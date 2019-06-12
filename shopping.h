@@ -15,11 +15,14 @@
 //     tobuylist.PrintList();
 class Shopping{
  public:
-  void PushList(Goods object);
-  Goods GetLastElement();
-  void PrintList();
-  void SortByPrice();
-  void SortByIndex();
+  Shopping();
+  ~Shopping();
+ 
+  void PushList(const Goods& object);
+  const Goods& GetLastElement() const;
+  void PrintList() const;
+  void SortByPrice() const;
+  void SortByIndex() const;
 
  private:
   std::vector<Goods> shopping_list_;
