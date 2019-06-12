@@ -11,6 +11,10 @@ Shopping::~Shopping()
 {
 }
 
+bool Empty() const {
+ return shopping_list_.empty(); 
+}
+
 // Push Goods object to shopping_list_ vector
 void Shopping::PushList(const Goods& object) {
   shopping_list_.push_back(object);
