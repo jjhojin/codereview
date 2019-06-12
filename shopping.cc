@@ -1,19 +1,29 @@
 #include <iostream>
+#include <algorithm>
 #include "./shopping.h"
 
+
+Shopping::Shopping()
+{
+}
+
+Shopping::~Shopping()
+{
+}
+
 // Push Goods object to shopping_list_ vector
-void Shopping::PushList(Goods object) {
+void Shopping::PushList(const Goods& object) {
   shopping_list_.push_back(object);
 }
 
 // Get Goods object from end of shopping_list_ vector
-Goods Shopping::GetLastElement() {
+const Goods& Shopping::GetLastElement() const{
   return shopping_list_.back();
 }
 
 // Print shopping_list_ Elements
-void Shopping::PrintList() {
-  for (std::vector<Goods>::iterator i = shopping_list_.begin();
+void Shopping::PrintList() const {
+  for (auto i = shopping_list_.begin();
       i != shopping_list_.end(); i++) {
     std::cout << "Goods #" << i->GetIndex() << " - Price : " <<
     i->GetPrice() << std::endl;
@@ -22,42 +32,17 @@ void Shopping::PrintList() {
 
 // Sort shopping_list_ Elements by Price
 // Apply Selection Sort algorithm
-void Shopping::SortByPrice() {
-  std::vector<Goods>::iterator p = shopping_list_.begin();
-  std::vector<Goods>::iterator min = shopping_list_.end();
-  for (std::vector<Goods>::iterator i = shopping_list_.begin();
-      i != shopping_list_.end()-1; i++) {
-    for (std::vector<Goods>::iterator j = i; j != shopping_list_.end(); j++) {
-      if (min == shopping_list_.end()) {
-        min = j;
-        continue;
-      }
-      if (min->GetPrice() > j->GetPrice()) {
-        min = j;
-      }
-    }
-    std::iter_swap(i, min);
-    min = shopping_list_.end();
-  }
+void Shopping::SortByPrice() const {
+  std::sort(shopping_list_.begin(), shopping_list_.end(), [](const Goods& a, const Goods& b) {
+    return a.GetPrice() < b.GetPrice();
+  });
 }
 
 // Sort shopping_list_ Elements by Index
 // Apply Selection Sort algorithm
 void Shopping::SortByIndex() {
-  std::vector<Goods>::iterator p = shopping_list_.begin();
-  std::vector<Goods>::iterator min = shopping_list_.end();
-  for (std::vector<Goods>::iterator i = shopping_list_.begin();
-      i != shopping_list_.end()-1; i++) {
-    for (std::vector<Goods>::iterator j = i; j != shopping_list_.end(); j++) {
-      if (min == shopping_list_.end()) {
-        min = j;
-        continue;
-      }
-      if (min->GetIndex() > j->GetIndex()) {
-        min = j;
-      }
-    }
-    std::iter_swap(i, min);
-    min = shopping_list_.end();
-  }
+  std::sort(shopping_list_.begin(), shopping_list_.end(), [](const Goods& a, const Goods& b) {
+    return a.GetIndex() < b.GetIndex();
+  });
+
 }
