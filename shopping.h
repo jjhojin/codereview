@@ -18,6 +18,7 @@ class Shopping{
   Shopping();
   ~Shopping();
  
+  bool Empty() const;
   void PushList(const Goods& object);
   const Goods& GetLastElement() const;
   void PrintList() const;
