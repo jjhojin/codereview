@@ -18,7 +18,7 @@ class Shopping{
   Shopping();
   ~Shopping();
  
-  bool Empty() const;
+  bool Empty() const;  //it should be checked before call GetLastElement.
   void PushList(const Goods& object);
   const Goods& GetLastElement() const;
   void PrintList() const;
